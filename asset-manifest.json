@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/cellular-react/static/css/main.5f361e03.chunk.css",
+    "main.js": "/cellular-react/static/js/main.b9b3b456.chunk.js",
+    "main.js.map": "/cellular-react/static/js/main.b9b3b456.chunk.js.map",
+    "runtime-main.js": "/cellular-react/static/js/runtime-main.c5d9d9e9.js",
+    "runtime-main.js.map": "/cellular-react/static/js/runtime-main.c5d9d9e9.js.map",
+    "static/css/2.829c9cb5.chunk.css": "/cellular-react/static/css/2.829c9cb5.chunk.css",
+    "static/js/2.fbaf47f0.chunk.js": "/cellular-react/static/js/2.fbaf47f0.chunk.js",
+    "static/js/2.fbaf47f0.chunk.js.map": "/cellular-react/static/js/2.fbaf47f0.chunk.js.map",
+    "index.html": "/cellular-react/index.html",
+    "precache-manifest.69569017ad999d19e33d16a08fc101e1.js": "/cellular-react/precache-manifest.69569017ad999d19e33d16a08fc101e1.js",
+    "service-worker.js": "/cellular-react/service-worker.js",
+    "static/css/2.829c9cb5.chunk.css.map": "/cellular-react/static/css/2.829c9cb5.chunk.css.map",
+    "static/css/main.5f361e03.chunk.css.map": "/cellular-react/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.fbaf47f0.chunk.js.LICENSE.txt": "/cellular-react/static/js/2.fbaf47f0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c5d9d9e9.js",
+    "static/css/2.829c9cb5.chunk.css",
+    "static/js/2.fbaf47f0.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.b9b3b456.chunk.js"
+  ]
+}
