@@ -4,10 +4,12 @@
   "private": true,
   "homepage": "http://leungjch.github.io/cellular-react",
   "dependencies": {
+    "@popperjs/core": "^2.4.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
+    "bootstrap-select": "^1.13.17",
     "html2react": "^1.2.1",
     "jquery": "^3.5.1",
     "p5": "^1.0.0",
@@ -15,6 +17,7 @@
     "react-dom": "^16.13.1",
     "react-p5-wrapper": "^2.0.0",
     "react-scripts": "3.4.1",
+    "react-select": "^3.1.0",
     "save-as": "^0.1.8",
     "three": "^0.117.1"
   },

@@ -1,0 +1,208 @@
+[{
+    
+        "label": "Binary-State Cellular Automata",
+        "options": [{
+                "label": "Conway's Game of Life",
+                "sublabel": "\"This is the most famous cellular automata ever invented. People have been discovering patterns for this rule since around 1970. Large collections are available on the Internet. The rule definition is very simple: a living cell remains alive only when surrounded by 2 or 3 living neighbors,  otherwise it dies of loneliness or overcrowding. A dead cell comes to life when it has exactly 3 living neighbors. A rule by John Conway.\"",
+                "trait": "chaotic",
+                "Type": "moore_simple_neighborhood",
+                "Birth_Rule": [3],
+                "Alive_Rule": [2, 3],
+                "Max_State": 1,
+                "value": 0
+            },
+            {
+                "label":"Seeds",
+                "sublabel": "\"Every living cell dies every generation, but most patterns explode anyway. It's a challenge to build new patterns that don't explode. Arguably the simplest challenging rule. A rule by Brian Silverman.\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[2],
+                "Alive_Rule":[],
+                "Max_State": 1,
+                "value": 1
+        
+            },
+            {
+                "label":"Amoeba",
+                "sublabel": "\"An \"amoeba\" universe - forms large random areas that resemble amoebas. Internal to a random area is chaos. The edge vacillates wildly, and patterns tend to grow more than shrink. The more they grow, the more certain their survival. This is a fairly well-balanced rule. Author unknown.\"",
+                "trait": "chaotic",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[3,5,7],
+                "Alive_Rule":[1,3,5,8],
+                "Max_State": 1,
+                "value": 2
+        
+            },
+            {
+                "label":"Coagulations",
+                "sublabel": "\"Creates gooey coagulations as it expands forever. Best viewed at zoom=1. Notice that this is a close variation of the previous rule, 235678/3678, except that there is one less condition for a dead cell to come to life on the next generation. In general this should make a universe less active, but this is an exception. Author unknown.\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[3,7,8],
+                "Alive_Rule":[2,3,5,6,7,8],
+                "Max_State": 1,
+                "value": 3
+        
+            },
+            {
+                "label":"Long Life",
+                "sublabel": "\"This rule is called \"Long life\" because of the extremely high period patterns that can be produced in this universe. A rule by Andrew Trevorrow.\"",
+                "trait": "stable",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[3,4,5],
+                "Alive_Rule":[5],
+                "Max_State": 1,
+                "value": 4
+        
+            },
+            {
+                "label":"Gnarl",
+                "sublabel": "\"A simple rule provided by Kellie Evans. To see its beauty start with simple patterns, for example with a single dot.\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[1],
+                "Alive_Rule":[1],
+                "Max_State": 1,
+                "value": 5
+        
+            },
+            {
+                "label":"2x2",
+                "sublabel": "\"Similar in character to Conway's Life, but creates completely different patterns. Many different oscillators occur at random, and a rare glider. Simple block seeds usually lead to oscillators of various periods. This rule is also a 2x2 block universe. This means that patterns consisting entirely of 2x2 blocks, all aligned, will continue to consist of 2x2 blocks. Author unknown.\"",
+                "trait": "chaotic",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[3,6],
+                "Alive_Rule":[1,2,5],
+                "Max_State": 1,
+                "value": 6
+            },
+            {
+                "label":"34 Life",
+                "sublabel": "\"One of the first explored alternatives to Conway's Life, back in the early 1970's. Computing power was so low back then, it was months before anyone noticed that this is an exploding universe. What makes this universe interesting is the variety of small oscillators and the period-3 orthogonal spaceship. Author unknown\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[3,4],
+                "Alive_Rule":[3,4],
+                "Max_State": 1,
+                "value": 7
+        
+            },
+            {
+                "label":"Replicator",
+                "sublabel": "\"In this remarkable universe every pattern is a replicator. After 32 steps every starting pattern is replicated 8 times. Author unknown.\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[1,3,5,7],
+                "Alive_Rule":[1,3,5,7],
+                "Max_State": 1,
+                "value": 8
+        
+            },
+            {
+                "label":"Maze",
+                "sublabel": "\"An \"a-maze-ing\" universe - crystallizes into maze-like patterns. Interesting variations: try removing 5 from the \"Survival\" list. To produce mice running in the maze, add 7 to the \"Births\" list. Author unknown.\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[3],
+                "Alive_Rule":[1,2,3,4],
+                "Max_State": 1,
+                "value": 9
+        
+            },
+            {
+                "label":"Walled Cities",
+                "sublabel": "\"The rule creates walled cities of activity. Once the field has stabilized, one can draw lines to connect the cities and the patterns expand to create an even larger city. But once the wall is complete, the city never grows, even though there is near-random activity inside it. A rule by David Macfarlane.\"",
+                "trait": "stable",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[4,5,6,7,8],
+                "Alive_Rule":[2,3,4,5],
+                "Max_State": 1,
+                "value": 10
+        
+            }
+
+        ]
+    },
+    {
+        "label": "Multi-state Cellular Automata",
+        "options": [{
+                "label": "Brian's Brain",
+                "sublabel": "\"Unquestionably one of the best known and most beautiful CA rules. [...] Although relatively old, it has never been systematically explored. The rule is so live that it's not easy to construct stable patterns in it. In December 1999 Michael Sweney discovered first BB oscillators. A rule by Brian Silverman.\"",
+                "trait": "chaotic",
+                "Type": "moore_simple_neighborhood",
+                "Birth_Rule": [2],
+                "Alive_Rule": [],
+                "Max_State": 2,
+                "value": 11
+
+            },
+            {
+                "label":"Frogs", 
+                "sublabel": "\"The name comes from very commonly occurring frog-like gliders. A rule by Scott Robert Ladd.\"",
+                "trait": "chaotic",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[3,4],
+                "Alive_Rule":[1,2],
+                "Max_State": 2,
+                "value": 12
+        
+            },
+            {
+                "label":"Fireworks",
+                "sublabel": "\"Nearly perfect fireworks simulation. It produces interesting results from both random and prepared initial states. Even several cells scattered over the lattice will produce long-running ravishing pictures. A rule by John Elliot\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[1,3],
+                "Alive_Rule":[2],
+                "Max_State": 21,
+                "value": 13
+        
+            },
+            {
+                "label":"Xtasy",
+                "sublabel": "\"From simple seeds in a closed universe this is a lovely kaleidoscopic wave rule that tends to do extended meditations on the letter X. A rule by John Elliott, July 2000\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[2,3,5,6],
+                "Alive_Rule":[1,4,5,6],
+                "Max_State": 15,
+                "value": 14
+        
+            },
+            {
+                "label":"Frozen Spirals",
+                "sublabel": "\"The rule features a popular Zhabotinsky reaction, but with one distinction - spirals have icicles in their vertices. A rule by Mirek Wojtowicz.\"",
+                "trait": "cyclic",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[2,3],
+                "Alive_Rule":[3,5,6],
+                "Max_State": 5,
+                "value": 15
+        
+            },
+            {
+                "label":"Burstll",
+                "sublabel": "\"Basically it is Burst without the single cell still life. It supports slow and fast spaceships, oscillators, and methuselahs as well as a very characteristic p500+ oscillator.\"",
+                "trait": "chaotic",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[3,4,6,8],
+                "Alive_Rule":[2,3,5,6,7,8],
+                "Max_State": 8,
+                "value": 16
+        
+            },
+            {
+                "label":"Star Wars",
+                "sublabel": "\"A very interesting and beautiful rule producing deep space battle scenes; a paradise for patterns' creators in the tradition of Conway's Life. It's a successful combination of famous Brian's Brain with a stabilizing factor.\"",
+                "trait": "exploding",
+                "Type":"moore_simple_neighborhood",
+                "Birth_Rule":[2],
+                "Alive_Rule":[3,4,5],
+                "Max_State": 3,
+                "value": 17
+        
+            }
+
+        ]
+    }
+]

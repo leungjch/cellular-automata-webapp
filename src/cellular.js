@@ -4,9 +4,13 @@
 
 // import * as THREE from 'three';
 var THREE = require('three');
-var $ = require('jquery');
 var saveAs = require('save-as');
 var p5 = require('p5');
+
+import $ from 'jquery';
+import Popper from 'popper.js';
+
+
 
 // require('./three/examples/js/controls/OrbitControls');
 import {OrbitControls} from "./three/examples/jsm/controls/OrbitControls.js";
@@ -15,8 +19,8 @@ import {OBJExporter} from "./three/examples/js/exporters/OBJExporter.js";
 //Create a Pixi Application
 
 
-const WIDTH = window.innerWidth/2; // width of app in pixels
-const HEIGHT = window.innerWidth/2; // height of app in pixels
+const WIDTH = window.innerWidth/3; // width of app in pixels
+const HEIGHT = window.innerWidth/3; // height of app in pixels
 
 var WORLDWIDTH = 64; // number of tiles (cells) 
 var WORLDHEIGHT = 64;
@@ -34,8 +38,8 @@ var stopped = false;
 var iterateOnce = false;
 var change_canvas_size = false;
 var wrap_edges = true; 
-// app.ticker.maxFPS = 60
-// var maxFPS = 60;
+var fps_requested = 120; // 60 fps unless set otherwise
+
 
 var fpsCap = false;
 
@@ -97,18 +101,21 @@ var config = {
 // read configs from configs.json and populate the rule preset dropdown list
 
 let rules_dropdown = $("#rules_dropdown")
-rules_dropdown.empty()
 
+console.log(rules_dropdown.length)
+rules_dropdown.empty()
 var rule_configs;
 
-$.getJSON("js/configs.json", function (data) {
+$.getJSON("configs.json", function (data) {
     rule_configs = data;
     var json_num = 0;
+    console.log(data)
     $.each(data, function (key, entry) {
         rules_dropdown.append($('<option></option>').attr('value', json_num).text(entry.Name));
         json_num+=1
     })
   });
+  console.log("done")
 
 class Cell
 {
@@ -127,12 +134,12 @@ class Cell
     }
 }
 
-var reset_button = function()
+export var reset_button = function()
 {
     init();
     // iterate_once();
 }
-var seed_random = function()
+export var seed_random = function()
 {
     // clear_everything();
 
@@ -143,17 +150,21 @@ var seed_random = function()
 }
 
 // gets window settings from user form and resets system
-function set_size()
+export var set_size = function()
 {
     clear_everything();
     WORLDWIDTH = document.getElementById("gridwidth").value
     WORLDHEIGHT = document.getElementById("gridheight").value
     GRIDSIZE = WIDTH/WORLDWIDTH-OFFSET;
 
+
+    var prob = document.getElementById("seed_probability").value
+
+    
     change_canvas_size = true;
     wrap_edges = document.getElementById("wrap_around").checked
     console.log(wrap_edges)
-    init();
+    init(prob);
     // iterate_once();
 }
 
@@ -171,42 +182,42 @@ function set_tile_graphics()
 }
 
 // reads selected preset, fills in values and resets system
-var set_rule_preset = function()
+export var set_rule_preset = function(alive, birth, max_state)
 {
-    console.log("hi")
-    var dropdown = document.getElementById("rules_dropdown")
-    var rule_name = dropdown.options[dropdown.selectedIndex].value;
-    console.log(rule_configs)
+    // console.log(rule_configs)
 
     // fill in birth and alive values
     var alive_input = document.getElementById("alive_rule")
     var birth_input = document.getElementById("birth_rule")
     var nStates_input = document.getElementById("nStates")
 
-    alive_input.value = rule_configs[rule_name].Alive_Rule
-    birth_input.value = rule_configs[rule_name].Birth_Rule
-    nStates_input.value = rule_configs[rule_name].Max_State+1
+    alive_input.value = alive
+    birth_input.value = birth
+    nStates_input.value = max_state+1
 
-    config['Alive_Rule'] = rule_configs[rule_name].Alive_Rule
-    config['Birth_Rule'] = rule_configs[rule_name].Birth_Rule
-    config['Max_State'] = rule_configs[rule_name].Max_State
+    config['Alive_Rule'] = alive
+    config['Birth_Rule'] = birth
+    config['Max_State'] = max_state
+    var prob = document.getElementById("seed_probability").value
+
 
     clear_everything();
-    init()
+    init(prob)
     // iterate_once();
 
 }
 
-
 // gets rules from user form and resets system
-function set_rules()
+export var set_rules = function()
 {
     config['Alive_Rule'] = parse_input(document.getElementById("alive_rule").value)
     config['Birth_Rule'] = parse_input(document.getElementById("birth_rule").value)
     config['Max_State'] = document.getElementById("nStates").value-1
     
+    var prob = document.getElementById("seed_probability").value
+
     clear_everything();
-    init()
+    init(prob)
     // iterate_once();
 
 }
@@ -295,12 +306,12 @@ function toggle_play()
     if (stopped)
     {
         // replace pause button with play button
-        pause_play_button.src = "../icons/play_arrow-white-24dp.svg"
+        // pause_play_button.src = "../icons/play_arrow-white-24dp.svg"
     }
     else
     {
         // replace play button with pause button
-        pause_play_button.src = "../icons/pause-white-24dp.svg"
+        // pause_play_button.src = "../icons/pause-white-24dp.svg"
     }
     stopped = !stopped;
     
@@ -358,11 +369,17 @@ function clear_everything(clear_system = true, clear_cells = true)
 }
 
 
+export var set_fps = function()
+{
+  fps_requested = document.getElementById("fpsSlider").value
+}
+
 // called while the user is dragging the history slider
 // continuously redraw the history
 
-var set_history = function(manually_request_time = null, set_end = true, draw_interactivity = true)
+export var set_history = function(manually_request_time = null, set_end = true, draw_interactivity = true)
 {
+    stopped = true;
     var historySlider = document.getElementById("historySlider")
     var time;
     // manually_request_time is set to null when we are using the slider
@@ -377,6 +394,7 @@ var set_history = function(manually_request_time = null, set_end = true, draw_in
 
     if (time >= 0)
     {
+ 
         // revert back to frame
         time = Math.max(0,time)
         cells = system[time];
@@ -396,7 +414,7 @@ var set_history = function(manually_request_time = null, set_end = true, draw_in
 }
 
 // called when the user stops dragging the history slider
-var set_history_end = function()
+export var set_history_end = function()
 {
     var historySlider = document.getElementById("historySlider")
 
@@ -865,7 +883,7 @@ var generate_model = function()
     animate_three();
 }
 
-export default function cellular_sketch (sketch) {
+export function cellular_sketch (sketch) {
 // const s = ( sketch ) => {
   var canvas;
   // var capturer;
@@ -893,7 +911,6 @@ export default function cellular_sketch (sketch) {
       sketch.resizeCanvas(ratio*WORLDWIDTH, ratio*WORLDHEIGHT)
       GRIDSIZE = ratio
     }
-    var fps_requested = 120; // 60 fps unless set otherwise
 
     var historySlider = document.getElementById("historySlider")
     historySlider.max = system.length-1
@@ -921,7 +938,7 @@ export default function cellular_sketch (sketch) {
         cells = iterate(cells);
         iterationNum_text.innerText = parseInt(iterationNum_text.innerText)+1
 
-        historySlider.disabled = true;
+        historySlider.disabled = false;
 
         system.push(JSON.parse(JSON.stringify(cells)));
         system_graphics.push(JSON.parse(JSON.stringify(cells_graphics)));

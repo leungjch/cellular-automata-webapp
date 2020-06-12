@@ -1,4 +1,5 @@
 .App {
+  font-family: sans-serif;
   text-align: center;
 }
 
@@ -11,6 +12,17 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+#left
+{
+  background-color:rgb(245, 255, 236);
+  outline: 5px solid black;
+}
+
+#wrap_around
+{
+  margin-left: 5px;
 }
 
 .App-header {
