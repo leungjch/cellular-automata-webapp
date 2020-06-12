@@ -106,16 +106,6 @@ console.log(rules_dropdown.length)
 rules_dropdown.empty()
 var rule_configs;
 
-$.getJSON("configs.json", function (data) {
-    rule_configs = data;
-    var json_num = 0;
-    console.log(data)
-    $.each(data, function (key, entry) {
-        rules_dropdown.append($('<option></option>').attr('value', json_num).text(entry.Name));
-        json_num+=1
-    })
-  });
-  console.log("done")
 
 class Cell
 {
@@ -300,7 +290,7 @@ function keyboard(value) {
 
 
 // playback functions
-function toggle_play()
+export var toggle_play = function()
 {
     var pause_play_button = document.getElementById("pause_play_button")
     if (stopped)
@@ -317,7 +307,7 @@ function toggle_play()
     
 }
 
-function iterate_once()
+export var iterate_once = function()
 {
     stopped = true;
     iterateOnce = !iterateOnce;
@@ -432,6 +422,12 @@ export var set_history_end = function()
     
     historySlider.max = historySlider.value
 
+}
+
+export var set_history_back_one = function()
+{
+  var itnum = parseInt(document.getElementById("iterationNum").innerHTML)-1
+  set_history(itnum, true, false)
 }
 
 // setup space key as stop frame

@@ -1,7 +1,7 @@
 import React from 'react';
 import P5Wrapper from 'react-p5-wrapper';
 
-import {cellular_sketch, reset_button, seed_random, set_size, set_history, set_fps, set_rules, set_rule_preset, generate_model} from './cellular.js'
+import {cellular_sketch, reset_button, seed_random, set_size, set_history, set_history_back_one, iterate_once, toggle_play, set_fps, set_rules, set_rule_preset, generate_model} from './cellular.js'
 // import './cellular.js'
 import $ from 'jquery';
 
@@ -46,7 +46,14 @@ class App extends React.Component {
     this.setState({
       isChecked: !this.state.isChecked,
     });
-
+  }
+  handleBackOne = function()
+  {
+    // todo
+  }
+  handleBeginningTime = function()
+  {
+    set_history(0, true, false);
   }
 
   
@@ -100,7 +107,6 @@ class App extends React.Component {
                   <div className="col-8" id="rulecolumn">
                     <p> Rule Preset</p>
                     <Select   defaultValue = {configs[0].options[0]} 
-
                               options={configs} 
                               components={{ Option }}   
                               onChange = {this.handleChange} 
@@ -128,16 +134,16 @@ class App extends React.Component {
 
                         <div className="d-flex flex-row">
                           <div className = "p2">
-                          <button type="button" id="beginning" className="btn btn-dark btn-lg"></button>
+                          <button type="button" id="beginning" className="btn btn-dark btn-lg" onClick = {this.handleBeginningTime}></button>
                           </div>
                           <div className = "p2">
-                          <button type="button" id="back_one" className="btn btn-dark btn-lg" ></button>
+                          <button type="button" id="back_one" className="btn btn-dark btn-lg" onClick = {set_history_back_one}></button>
                           </div>
                           <div className = "p2">
-                          <button type="button" id="play_pause" className="btn btn-dark btn-lg"></button>
+                          <button type="button" id="play_pause" className="btn btn-dark btn-lg" onClick = {toggle_play}></button>
                           </div>
                           <div className = "p2">
-                          <button type="button" id="forward_one" className="btn btn-dark btn-lg"></button>
+                          <button type="button" id="forward_one" className="btn btn-dark btn-lg" onClick = {iterate_once}></button>
                           </div>
                           <div className = "p2">
                           <label htmlFor="fpsSlider">Speed (<span id="checkFpsCap_text"></span> fps) </label>
@@ -188,8 +194,8 @@ class App extends React.Component {
                   </div>
                   <div className="modal-footer">
                     <span> Hold mouse click to rotate model, scroll to zoom. Made using three.js. </span>
-                    <button type="button" id = "close_generate_model" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id = "export_to_obj" class="btn btn-primary">Export as .OBJ</button>
+                    <button type="button" id = "close_generate_model" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id = "export_to_obj" className="btn btn-primary">Export as .OBJ</button>
                   </div>
                 </div>
             </div>
