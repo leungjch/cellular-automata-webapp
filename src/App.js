@@ -1,7 +1,7 @@
 import React from 'react';
 import P5Wrapper from 'react-p5-wrapper';
 
-import {cellular_sketch, reset_button, seed_random, set_size, set_history, set_fps, set_rules, set_rule_preset, set_history_end} from './cellular.js'
+import {cellular_sketch, reset_button, seed_random, set_size, set_history, set_fps, set_rules, set_rule_preset, generate_model} from './cellular.js'
 // import './cellular.js'
 import $ from 'jquery';
 
@@ -33,6 +33,7 @@ const Option = props => {
 class App extends React.Component {
   state = {
     selectedOption: null,
+    isChecked: true,
   };
   handleChange = selectedOption => {
     this.setState({ selectedOption });
@@ -40,6 +41,12 @@ class App extends React.Component {
   };
   handleChangeTime = function(){
     set_history(null,false,false)
+  }
+  toggleWrap = () => {
+    this.setState({
+      isChecked: !this.state.isChecked,
+    });
+
   }
 
   
@@ -58,7 +65,7 @@ class App extends React.Component {
             <div className="col-sm-4 col-md-4 m-0 p-0">
               <div id="left" style={{margin:"1.5rem"}}>
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-4" id="gridcolumn">
                       <label htmlFor="gridWidth">Width</label>
                       <input type="range" className="custom-range" min="0" max="128" id="gridwidth"  onChange = {set_size} />
 
@@ -69,7 +76,7 @@ class App extends React.Component {
                         <label htmlFor="wrap_around"> Wrap edges </label>
                       </div>
                       <div className="p-2">
-                        <input type="checkbox" id="wrap_around" checked />
+                        <input type="checkbox" id="wrap_around" onChange = {this.toggleWrap} checked = {this.state.isChecked} />
                       </div>
                       </div>
 
@@ -90,7 +97,7 @@ class App extends React.Component {
 
 
                     </div>
-                  <div className="col-8">
+                  <div className="col-8" id="rulecolumn">
                     <p> Rule Preset</p>
                     <Select   defaultValue = {configs[0].options[0]} 
 
@@ -114,39 +121,48 @@ class App extends React.Component {
 
                   </div>
                 </div>
+                    <div className='row' id="bottom">
+                      <div className='col' id="bottomcolumn">
 
-                    <div className='row'>
-                      <div className='col'>
-
-                      <label htmlFor="historySlider">Time Machine</label>
                         <input type="range" className="custom-range" min="0" max="1" id="historySlider" onChange = {this.handleChangeTime} onMouseUp = {this.handleChangeTime_end} />
 
-                        <button type="button" id="beginning" className="btn btn-dark btn-lg">
+                        <div className="d-flex flex-row">
+                          <div className = "p2">
+                          <button type="button" id="beginning" className="btn btn-dark btn-lg"></button>
+                          </div>
+                          <div className = "p2">
+                          <button type="button" id="back_one" className="btn btn-dark btn-lg" ></button>
+                          </div>
+                          <div className = "p2">
+                          <button type="button" id="play_pause" className="btn btn-dark btn-lg"></button>
+                          </div>
+                          <div className = "p2">
+                          <button type="button" id="forward_one" className="btn btn-dark btn-lg"></button>
+                          </div>
+                          <div className = "p2">
+                          <label htmlFor="fpsSlider">Speed (<span id="checkFpsCap_text"></span> fps) </label>
+                        <input type="range" className="custom-range" min="0" max="120" defaultValue="120" id="fpsSlider" onChange={set_fps} />
+                          </div>
 
-                          {/* <img src="icons/last_page-white-24dp.svg" aria-hidden="true"> </img> */}
-                        </button>
-                        <button type="button" id="back_one" className="btn btn-dark btn-lg" >
-                          {/* <img src="icons/arrow_back-white-24dp.svg" aria-hidden="true"> </img> */}
-                        </button>
-                        <button type="button" id="play_pause" className="btn btn-dark btn-lg">
-                          {/* <img src="icons/pause-white-24dp.svg" id="pause_play_button" aria-hidden="true"> </img> */}
-                        </button>
-                        <button type="button" id="forward_one" className="btn btn-dark btn-lg">
-                          {/* <img src="icons/arrow_forward-white-24dp.svg" aria-hidden="true"> </img> */}
-                        </button>
+                        </div> 
+
                      
                         <p>Generation: <output id="iterationNum"></output></p>
 
-                        <label htmlFor="fpsSlider">Speed (<span id="checkFpsCap_text"></span> fps) </label>
-                        <input type="range" className="custom-range" min="0" max="120" defaultValue="120" id="fpsSlider" onChange={set_fps} />
 
 
-                        <p> 3D Visualization </p>
-                  <label htmlFor="generate_model"> Generates a stacked 3D model of your system, with each horizontal slice representing a single generation. </label>
-                  {/* <!-- Button trigger modal --> */}
-                  <button type="button" id = "generate_model" className="btn btn-primary" data-toggle="modal" data-target="#model_modal">
-                      Generate Stacked System
+                        <div className="d-flex flex-row">
+                      <div className="p-2">
+                      <label htmlFor="generate_model"> 3D Visualization: Generates a stacked 3D model of your system, with each horizontal slice representing a single generation. </label>
+                      </div>
+                      <div className = "p-2">
+                      <button type="button" id = "generate_model" className="btn btn-primary" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
+                      Generate 3D Stacked System
                     </button>
+                      </div>
+                    </div>
+
+                  {/* <!-- Button trigger modal --> */}
 
                       </div>
 
@@ -164,7 +180,22 @@ class App extends React.Component {
                 <a className="navbar-brand" href="#">Sticky Footer</a>
               </nav>
             </div>
+            <div className="modal fade bd-example-modal-lg" id="model_modal" tabindex="-1" role="dialog" aria-labelledby="model_modal_label" aria-hidden="true">
+              <div className="modal-dialog modal-lg" role="document">
+                <div className="modal-content">
+                  <div className="modal-body">
+                    <canvas id = "three_canvas" width="800" height = "800"></canvas> 
+                  </div>
+                  <div className="modal-footer">
+                    <span> Hold mouse click to rotate model, scroll to zoom. Made using three.js. </span>
+                    <button type="button" id = "close_generate_model" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id = "export_to_obj" class="btn btn-primary">Export as .OBJ</button>
+                  </div>
+                </div>
+            </div>
+
           </div>
+</div>
 
 
           );

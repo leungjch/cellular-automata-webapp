@@ -14,11 +14,47 @@
   }
 }
 
-#left
+/* #left
 {
   background-color:rgb(245, 255, 236);
   outline: 5px solid black;
+} */
+
+#gridcolumn
+{
+  background-color:rgb(231, 245, 248);
+  border: 1px solid rgb(139, 123, 211);
+  border-radius: 1rem;
+  padding: 0rem;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  margin-left: 0rem;
 }
+
+#rulecolumn
+{
+  background-color:rgb(231, 245, 248);
+  border: 1px solid rgb(139, 123, 211);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-left: 0 rem;
+}
+#bottomcolumn
+{
+  background-color:rgb(231, 245, 248);
+  border: 1px solid rgb(139, 123, 211);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+
+
+}
+
+
 
 #wrap_around
 {

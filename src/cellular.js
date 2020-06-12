@@ -635,7 +635,7 @@ var iterate = function(myCells)
 }
 
 // ///////// Three.js code for rendering stacked
-var generate_model = function()
+export var generate_model = function()
 {
     var scene = new THREE.Scene();
     var three_canvas = document.getElementById("three_canvas")
@@ -858,7 +858,7 @@ var generate_model = function()
         var file_content = exporter.parse(mesh)
 
         var file = new Blob( [ file_content ], { type: 'text/plain' })
-        saveAs( file, config['Alive_Rule'] + "-" + config['Birth_Rule'] + "-" 
+        saveAs.saveAs( file, config['Alive_Rule'] + "-" + config['Birth_Rule'] + "-" 
         + (config["Max_State"]+1)  + "-" + "generation" + (system.length-1) + '.obj' );
 
     }
@@ -915,6 +915,9 @@ export function cellular_sketch (sketch) {
     var historySlider = document.getElementById("historySlider")
     historySlider.max = system.length-1
 
+    wrap_edges = document.getElementById("wrap_around").checked
+
+
 
     // handle FPS
     fps_requested = parseInt(document.getElementById("fpsSlider").value)
@@ -934,7 +937,6 @@ export function cellular_sketch (sketch) {
     
         historySlider.value += 1
 
-
         cells = iterate(cells);
         iterationNum_text.innerText = parseInt(iterationNum_text.innerText)+1
 
@@ -942,7 +944,11 @@ export function cellular_sketch (sketch) {
 
         system.push(JSON.parse(JSON.stringify(cells)));
         system_graphics.push(JSON.parse(JSON.stringify(cells_graphics)));
-
+        if (system.length > 2000)
+        {
+          system.shift();
+          system_graphics.shift();
+        }
 
         // stopped = !stopped
     }
