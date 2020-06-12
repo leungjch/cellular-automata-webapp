@@ -1,6 +1,7 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  background-color: rgb(200,200,200)
 }
 
 .App-logo {
@@ -20,15 +21,16 @@
   outline: 5px solid black;
 } */
 
+
 #gridcolumn
 {
   background-color:rgb(231, 245, 248);
   border: 1px solid rgb(139, 123, 211);
   border-radius: 1rem;
-  padding: 0rem;
+  padding: 1rem;
   margin-bottom: 0rem;
-  margin-top: 0rem;
-  margin-left: 0rem;
+  margin-top: 1rem;
+  margin-left: 1.5rem;
 }
 
 #rulecolumn
@@ -37,9 +39,11 @@
   border: 1px solid rgb(139, 123, 211);
   border-radius: 1rem;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   margin-top: 1rem;
-  margin-left: 0 rem;
+  margin-left: 0.5rem;
+  margin-right: 1.5rem;
+
 }
 #bottomcolumn
 {
@@ -49,17 +53,44 @@
   padding: 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  margin-left: 1rem;
-
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 
 }
-
+#sketch
+{
+  background-color:rgb(231, 245, 248);
+  border: 1px solid rgb(139, 123, 211);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  /* margin-left: 1rem; */
+}
 
 
 #wrap_around
 {
-  margin-left: 5px;
+  margin-left: 2px;
 }
+
+
+
+#infobox
+{
+  background-color:rgb(231, 245, 248);
+  border: 1px solid rgb(139, 123, 211);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  text-align: left;
+
+
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -83,4 +114,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#hero
+{
+  background-color:transparent;
+  margin-top: 0rem;
+}
+
+#rightcol
+{
+  background-color:transparent;
+  margin-top: 0rem;
+
+}
+
+.vertical-center {
+  min-height: 0%; 
+  min-height: 0vh;
+
+  display: flex;
+  align-items: center;
 }

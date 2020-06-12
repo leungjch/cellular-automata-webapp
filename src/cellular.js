@@ -30,7 +30,10 @@ var ROUNDNESS = 0; // round corners of grid squares
 var GRIDSIZE = WIDTH/WORLDWIDTH-OFFSET;
 var MAX_STATE = 1;
 // var alive_color_code = '#00f0cf';
-var alive_color_code = '#ffffff';
+// var alive_color_code = '#ffffff';
+// var alive_color_code = "#007bff"
+var alive_color_code = "#000000"
+
 var myCanvas;
 var dead_color_code = 0x0000ff;
 
@@ -292,7 +295,7 @@ function keyboard(value) {
 // playback functions
 export var toggle_play = function()
 {
-    var pause_play_button = document.getElementById("pause_play_button")
+    // var pause_play_button = document.getElementById("pause_play_button")
     if (stopped)
     {
         // replace pause button with play button
@@ -420,7 +423,7 @@ export var set_history_end = function()
 
     }
     
-    historySlider.max = historySlider.value
+    historySlider.max = system.length-1
 
 }
 
@@ -634,10 +637,12 @@ var iterate = function(myCells)
 export var generate_model = function()
 {
     var scene = new THREE.Scene();
+
+    var square = Math.min(window.innerWidth, window.innerHeight)/1.5
     var three_canvas = document.getElementById("three_canvas")
-    var camera = new THREE.OrthographicCamera(  800 / - 50, 800 / 50, 800 / 50, 800 / -50, - 500, 1000);
+    var camera = new THREE.OrthographicCamera(  square / - 50, square / 50, square / 50, square / -50, - 500, 1000);
     var renderer = new THREE.WebGLRenderer( { canvas: three_canvas } );
-    renderer.setSize(800, 800);
+    renderer.setSize(square, square);
     scene.background = new THREE.Color('black');
 
     var faces = [
@@ -931,7 +936,7 @@ export function cellular_sketch (sketch) {
     {
         var iterationNum_text = document.getElementById("iterationNum");
     
-        historySlider.value += 1
+        // historySlider.value += 1
 
         cells = iterate(cells);
         iterationNum_text.innerText = parseInt(iterationNum_text.innerText)+1
@@ -955,7 +960,7 @@ export function cellular_sketch (sketch) {
     }
 
     // handle drawing
-    sketch.background(0);
+    sketch.background(231,245,248);
     sketch.noStroke() 
 
     // loop through only alive cells to speedup rendering

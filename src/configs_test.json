@@ -78,7 +78,7 @@
             },
             {
                 "label":"34 Life",
-                "sublabel": "\"One of the first explored alternatives to Conway's Life, back in the early 1970's. Computing power was so low back then, it was months before anyone noticed that this is an exploding universe. What makes this universe interesting is the variety of small oscillators and the period-3 orthogonal spaceship. Author unknown\"",
+                "sublabel": "\"One of the first explored alternatives to Conway's Life, back in the early 1970's. Computing power was so low back then, it was months before anyone noticed that this is an exploding universe. What makes this universe interesting is the variety of small oscillators and the period-3 orthogonal spaceship. Author unknown.\"",
                 "trait": "exploding",
                 "Type":"moore_simple_neighborhood",
                 "Birth_Rule":[3,4],
@@ -160,7 +160,7 @@
             },
             {
                 "label":"Xtasy",
-                "sublabel": "\"From simple seeds in a closed universe this is a lovely kaleidoscopic wave rule that tends to do extended meditations on the letter X. A rule by John Elliott, July 2000\"",
+                "sublabel": "\"From simple seeds in a closed universe this is a lovely kaleidoscopic wave rule that tends to do extended meditations on the letter X. A rule by John Elliott, July 2000.\"",
                 "trait": "exploding",
                 "Type":"moore_simple_neighborhood",
                 "Birth_Rule":[2,3,5,6],
