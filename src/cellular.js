@@ -19,8 +19,8 @@ import {OBJExporter} from "./three/examples/js/exporters/OBJExporter.js";
 //Create a Pixi Application
 
 
-const WIDTH = window.innerWidth/3; // width of app in pixels
-const HEIGHT = window.innerWidth/3; // height of app in pixels
+const WIDTH = window.innerWidth/2.25; // width of app in pixels
+const HEIGHT = window.innerWidth/2.25; // height of app in pixels
 
 var WORLDWIDTH = 64; // number of tiles (cells) 
 var WORLDHEIGHT = 64;
@@ -32,7 +32,7 @@ var MAX_STATE = 1;
 // var alive_color_code = '#00f0cf';
 // var alive_color_code = '#ffffff';
 // var alive_color_code = "#007bff"
-var alive_color_code = "#000000"
+var alive_color_code = "#2E8B9F"
 
 var myCanvas;
 var dead_color_code = 0x0000ff;

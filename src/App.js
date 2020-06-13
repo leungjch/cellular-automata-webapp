@@ -94,6 +94,7 @@ class App extends React.Component {
               <div id="left">
                 <div className="row">
                     <div className="col-4" id="gridcolumn">
+                      <label htmlFor="bgPicker">Background</label>
                       <label htmlFor="gridwidth">Width</label>
                       <input type="range" className="custom-range" min="0" max="128" id="gridwidth"  onChange = {set_size} />
 
@@ -179,18 +180,12 @@ class App extends React.Component {
                      
                         <p>Generation: <output id="iterationNum"></output></p>
 
-
-
-                        <div className="d-flex flex-row">
-                      <div className="p-2">
-                      <label htmlFor="generate_model"> 3D Visualization: Generates a stacked 3D model of your system, with each horizontal slice representing a single generation. </label>
-                      </div>
-                      <div className = "p-2">
-                      <button type="button" id = "generate_model" className="btn btn-success btn-lg" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
+                        <label htmlFor="generate_model"> 3D Visualization: Generates a stacked 3D model of your system, with each horizontal slice representing a single generation. </label>
+                        <button type="button" id = "generate_model" className="btn btn-success btn-lg" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
                       Generate 3D Stacked System
                     </button>
-                      </div>
-                    </div>
+
+
 
                   {/* <!-- Button trigger modal --> */}
 
@@ -228,7 +223,7 @@ class App extends React.Component {
             Alternatively, a von Neumann neighborhood defines a cell to be a neighbor if it is one of four cells directly adjacent to it (top, bottom, left, right).</p>
 
             <p>
-            There is incredible complexity that arises as a result of these birth, survival, and state rules that define cellular automata. <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns">Conway's Game of Life contains a variety of "patterns", including <em>"still lifes"</em>, <em>"oscillators"</em>, and <em>"spaceships"</em> that one would not expect from its simple rules.</a> Conway's Game of Life has been proved to be Turing Complete, meaning that any computation that can be done by a traditional computer is possible to be done in the Conway's Game of Life given a specific initial configuration. In addition, Conway's Game of Life is just one of many rules that is possible in 2D Cellular Automata. Use the Rule Presets dropdown to see some - my personal favorite is "Star Wars".
+            There is incredible complexity that arises as a result of these birth, survival, and state rules that define cellular automata. <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns">Conway's Game of Life contains a variety of "patterns", including <em>"still lifes"</em>, <em>"oscillators"</em>, and <em>"spaceships"</em> that one would not expect from its simple rules</a> (I suggest that you try to intentionally build some of these patterns yourself as not many of them can be encountered by randomly populating the system). Conway's Game of Life has been proved to be Turing Complete, meaning that any computation that can be done by a traditional computer is possible to be done in the Conway's Game of Life given a specific initial configuration. In addition, Conway's Game of Life is just one of many rules that is possible in 2D Cellular Automata. Use the Rule Presets dropdown to see some - my personal favorite is "Star Wars".
             </p>
             <h1> Controls </h1>
               <ul>
@@ -247,6 +242,9 @@ class App extends React.Component {
                 </li>
                 <li>
                   Press the <b>Populate</b> button to randomly populate the grid with a probability defined by the slider beside it (left - 0% populated, right - 100% populated). Moving the slider too far to the left or right will cause cells to die of loneliness or overpopulation.
+                </li>
+                <li>
+                  Press the <b>Generate 3D Stacked System</b> button to build a 3D model of the system from the beginning, with the option to save it as an .obj file.
                 </li>
                 <li>
                   Press <b>SPACE</b> to pause or play.

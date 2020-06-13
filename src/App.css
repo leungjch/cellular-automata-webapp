@@ -1,12 +1,16 @@
 .App {
   font-family: sans-serif;
   text-align: center;
-  background-color: rgb(200,200,200)
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+body
+{
+  background-color: #CDEAF0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -24,7 +28,7 @@
 
 #gridcolumn
 {
-  background-color:rgb(231, 245, 248);
+  background-color:#e7f5f8;
   border: 1px solid rgb(139, 123, 211);
   border-radius: 1rem;
   padding: 1rem;
@@ -35,7 +39,7 @@
 
 #rulecolumn
 {
-  background-color:rgb(231, 245, 248);
+  background-color:#e7f5f8;
   border: 1px solid rgb(139, 123, 211);
   border-radius: 1rem;
   padding: 1rem;
@@ -47,7 +51,7 @@
 }
 #bottomcolumn
 {
-  background-color:rgb(231, 245, 248);
+  background-color:#e7f5f8;
   border: 1px solid rgb(139, 123, 211);
   border-radius: 1rem;
   padding: 1rem;
@@ -59,7 +63,7 @@
 }
 #sketch
 {
-  background-color:rgb(231, 245, 248);
+  background-color:#e7f5f8;
   border: 1px solid rgb(139, 123, 211);
   border-radius: 1rem;
   padding: 1rem;
@@ -78,7 +82,7 @@
 
 #infobox
 {
-  background-color:rgb(231, 245, 248);
+  background-color:#e7f5f8;
   border: 1px solid rgb(139, 123, 211);
   border-radius: 1rem;
   padding: 1rem;
