@@ -20,8 +20,8 @@ import {OBJExporter} from "./three/examples/js/exporters/OBJExporter.js";
 
 
 
-const WIDTH = Math.min(window.innerWidth/1.25, window.innerHeight/1.25); // width of app in pixels
-const HEIGHT = Math.min(window.innerWidth/1.25, window.innerHeight/1.25); // height of app in pixels
+const WIDTH = Math.min(window.innerWidth/1.2, window.innerHeight/1.2); // width of app in pixels
+const HEIGHT = Math.min(window.innerWidth/1.2, window.innerHeight/1.2); // height of app in pixels
 
 var WORLDWIDTH = 64; // number of tiles (cells) 
 var WORLDHEIGHT = 64;
@@ -29,6 +29,7 @@ var OFFSET = 0; // grid spacing in pixels (set to 0 for no spacing)
 var STROKE = 0;
 var ROUNDNESS = 0; // round corners of grid squares
 var GRIDSIZE = WIDTH/WORLDWIDTH-OFFSET;
+var MAX_SYSTEM_LENGTH = 5000;
 var MAX_STATE = 1;
 // var alive_color_code = '#00f0cf';
 // var alive_color_code = '#ffffff';
@@ -962,10 +963,11 @@ export function cellular_sketch (sketch) {
 
         system.push(JSON.parse(JSON.stringify(cells)));
         system_graphics.push(JSON.parse(JSON.stringify(cells_graphics)));
-        if (system.length > 2000)
+        if (system.length > MAX_SYSTEM_LENGTH)
         {
           system.shift();
           system_graphics.shift();
+
         }
 
         // stopped = !stopped

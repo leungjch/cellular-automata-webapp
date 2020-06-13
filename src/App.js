@@ -180,7 +180,7 @@ class App extends React.Component {
                       <p>Generation: <output id="iterationNum"></output></p>
 
 
-                        <input type="range" className="custom-range" min="0" max="1" id="historySlider" onChange = {this.handleChangeTime} onMouseUp = {this.handleChangeTime_end} />
+                        <input type="range" className="custom-range" min="0" max="0" id="historySlider" onChange = {this.handleChangeTime} onMouseUp = {this.handleChangeTime_end} />
 
                         <div className="d-flex flex-row justify-content-center">
                           <div className = "p2">
@@ -288,10 +288,10 @@ class App extends React.Component {
                   Press <b>Back Arrow</b> to reverse the system by one generation.
                 </li>
                 <li>
-                  Control the <b> grid size </b> using the width and height sliders. Supports a maximum 128x128 cell grid.
+                  Control the <b> grid size </b> using the width and height sliders. Supports a maximum 150x150 cell grid.
                 </li>
                 <li>
-                Go back in <b>time</b> using the time slider.
+                Go back in <b>time</b> using the time slider. Only the last 5000 generations are stored.
                 </li>
                 <li>
                   Control the <b>framerate (speed)</b> using the speed slider.
