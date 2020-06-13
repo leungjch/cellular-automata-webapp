@@ -110,7 +110,7 @@ class App extends React.Component {
 
                       <div className="d-flex flex-row justify-content-center">
                         <div className="p-2">
-                          <input type="range" className="custom-range" max="1.00" min="0.00" defaultValue="0.5" step="0.05" id="seed_probability"  />
+                          <input type="range" className="custom-range" max="1.00" min="0.00" defaultValue="0.1" step="0.05" id="seed_probability"  />
                         </div>
                         <div className="p-2">
                         <button type="button" id = "random_button" className="btn btn-outline-success btn btn-block" onClick={seed_random}>Populate</button>
