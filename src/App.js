@@ -1,7 +1,7 @@
 import React from 'react';
 import P5Wrapper from 'react-p5-wrapper';
 
-import {cellular_sketch, reset_button, seed_random, set_size, set_history, set_history_end, set_history_back_one, iterate_once, toggle_play, set_fps, set_rules, set_rule_preset, generate_model} from './cellular.js'
+import {cellular_sketch, reset_button, seed_random, set_size, set_history, set_history_end, set_history_back_one, iterate_once, toggle_play, set_fps, set_rules, set_rule_preset, set_color, generate_model} from './cellular.js'
 // import './cellular.js'
 import $ from 'jquery';
 
@@ -9,6 +9,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "bootstrap/dist/js/bootstrap.js"
 
 import Select, { components } from "react-select";
+import { SliderPicker  } from 'react-color';
+
+
+import SketchExample from './customPicker';
 
 
 // import configs from "./configs.js"
@@ -44,6 +48,7 @@ class App extends React.Component {
     selectedOption: null,
     isChecked: true,
     isPaused: false,
+    cellColor: "#2E8B9F",
   };
   handleChange = selectedOption => {
     this.setState({ selectedOption });
@@ -78,6 +83,11 @@ class App extends React.Component {
   {
     set_history(0, true, false);
   }
+  handleColorPicked = (color) =>
+  {
+    this.setState({ cellColor: color.rgb });
+    set_color(color.hex);
+  }
 
 
   
@@ -94,29 +104,50 @@ class App extends React.Component {
               <div id="left">
                 <div className="row">
                     <div className="col-4" id="gridcolumn">
-                      <label htmlFor="bgPicker">Background</label>
+
                       <label htmlFor="gridwidth">Width</label>
-                      <input type="range" className="custom-range" min="0" max="128" id="gridwidth"  onChange = {set_size} />
+                      <input type="range" className="custom-range" min="0" max="192" id="gridwidth"  onChange = {set_size} />
 
                       <label htmlFor="gridheight">Height</label>
-                      <input type="range" className="custom-range" min="0" max="128" id="gridheight" onChange = {set_size} />
-                      <div className="d-flex flex-row justify-content-center">
+                      <input type="range" className="custom-range" min="0" max="192" id="gridheight" onChange = {set_size} />
+                      
+                      <div className="d-flex flex-row justify-content-around">
                         <div className="p-2">
-                          <label htmlFor="wrap_around"> Wrap edges </label>
+                          <label htmlFor="wrap_around"> Wrap Edges </label>
                         </div>
                         <div className="p-2">
                           <input type="checkbox" id="wrap_around" onChange = {this.toggleWrap} checked = {this.state.isChecked} />
                         </div>
                       </div>
 
-                      <div className="d-flex flex-row justify-content-center">
+                      <div>
+                        <div className="d-flex flex-row justify-content-around">
+                          <div className="p2">
+                            <label htmlFor="bgPicker">Cell Color</label>
+                          </div>
+                          <div className="p2" id="colorPicker">
+                            <SketchExample 
+                            myColor={ this.state.cellColor }
+                            myClick={ this.handleColorPicked }
+                            />                          
+                          </div>
+                        </div>
+
+                      <input type="range" className="custom-range" max="1.00" min="0.00" defaultValue="0.2" step="0.01" onChange={seed_random} id="seed_probability"  />
+
+                      <button type="button" id = "random_button" className="btn btn-success btn-lg btn-block" onClick={seed_random}>Populate <span id="popPct">(20%)</span></button>
+
+
+                      {/* <div className="d-flex flex-row justify-content-center">
                         <div className="p-2">
-                          <input type="range" className="custom-range" max="1.00" min="0.00" defaultValue="0.1" step="0.05" id="seed_probability"  />
                         </div>
                         <div className="p-2">
-                        <button type="button" id = "random_button" className="btn btn-outline-success btn btn-block" onClick={seed_random}>Populate</button>
                         </div>
+                      </div> */}
+
+
                       </div>
+
                       <button type="button" id="reset_button" className="btn btn-primary btn-lg btn-block" onClick={reset_button}>Clear</button>
                     
                     </div>
@@ -146,6 +177,9 @@ class App extends React.Component {
                     <div className='row' id="bottom">
                       <div className='col' id="bottomcolumn">
 
+                      <p>Generation: <output id="iterationNum"></output></p>
+
+
                         <input type="range" className="custom-range" min="0" max="1" id="historySlider" onChange = {this.handleChangeTime} onMouseUp = {this.handleChangeTime_end} />
 
                         <div className="d-flex flex-row justify-content-center">
@@ -173,17 +207,15 @@ class App extends React.Component {
 
 
                         </div> 
-                        <div>
-                          <label htmlFor="fpsSlider">Speed (<span id="checkFpsCap_text"></span> fps) </label>
-                        <input type="range" className="custom-range" min="0" max="60" defaultValue="60" id="fpsSlider" onChange={set_fps} />
-                          </div>
-                     
-                        <p>Generation: <output id="iterationNum"></output></p>
+                        <label htmlFor="fpsSlider">Speed (<span id="checkFpsCap_text"></span> fps) </label>
+                        <input type="range" className="custom-range" min="1" max="60" defaultValue="60" id="fpsSlider" onChange={set_fps} />
 
-                        <label htmlFor="generate_model"> 3D Visualization: Generates a stacked 3D model of your system, with each horizontal slice representing a single generation. </label>
-                        <button type="button" id = "generate_model" className="btn btn-success btn-lg" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
-                      Generate 3D Stacked System
-                    </button>
+                     
+                        {/* <label htmlFor="generate_model">  </label> */}
+                        <button type="button" id = "generate_model" className="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
+                        Generate 3D Stacked System
+                        </button>
+
 
 
 
@@ -195,9 +227,9 @@ class App extends React.Component {
                   </div>
                 </div>
             
-            <div className="col" id="rightcol">
+            <div className="col my-auto" id="rightcol">
               <div className="row">
-              <div class="vertical-center" id="sketch">
+              <div className="vertical-center" id="sketch">
                 <P5Wrapper sketch={cellular_sketch} ></P5Wrapper>
               {/* </div> */}
               </div>
@@ -244,7 +276,7 @@ class App extends React.Component {
                   Press the <b>Populate</b> button to randomly populate the grid with a probability defined by the slider beside it (left - 0% populated, right - 100% populated). Moving the slider too far to the left or right will cause cells to die of loneliness or overpopulation.
                 </li>
                 <li>
-                  Press the <b>Generate 3D Stacked System</b> button to build a 3D model of the system from the beginning, with the option to save it as an .obj file.
+                  Press the <b>Generate 3D Stacked System</b> button to generate a stacked 3D model of your system, with each horizontal slice representing a single generation. You can export it as an .obj file.
                 </li>
                 <li>
                   Press <b>SPACE</b> to pause or play.
@@ -267,13 +299,13 @@ class App extends React.Component {
                 
               </ul>
             <h1> Info </h1>
-            <p> Responsive UI created through React, and website styling with Bootstrap. Fast grid rendering using p5.js. 3D stacked visualisation created using three.js. Created by Justin Leung (June 2020). </p>
+            <p> Responsive UI created through React, website styling with Bootstrap. Fast grid rendering using p5.js. 3D stacked visualisation created using three.js. Created by Justin Leung (June 2020). </p>
             <p> Credits to <a href="http://www.mirekw.com/ca/ca_rules.html">Mirek Wójtowicz</a> for his compilation and descriptions of interesting CA rules. </p>
 
             </div>
           </div>
         </div>
-            <div className="modal fade bd-example-modal-lg" id="model_modal" tabindex="-1" role="dialog" aria-labelledby="model_modal_label" aria-hidden="true">
+            <div className="modal fade bd-example-modal-lg" id="model_modal" tabIndex="-1" role="dialog" aria-labelledby="model_modal_label" aria-hidden="true">
               <div className="modal-dialog modal-lg" role="document">
                 <div className="modal-content">
                   <div className="modal-body">

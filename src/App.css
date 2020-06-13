@@ -10,7 +10,7 @@
 
 body
 {
-  background-color: #CDEAF0;
+  background-color: #B4E0E8;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -29,7 +29,7 @@ body
 #gridcolumn
 {
   background-color:#e7f5f8;
-  border: 1px solid rgb(139, 123, 211);
+  /* border: 1px solid rgb(139, 123, 211); */
   border-radius: 1rem;
   padding: 1rem;
   margin-bottom: 0rem;
@@ -40,7 +40,7 @@ body
 #rulecolumn
 {
   background-color:#e7f5f8;
-  border: 1px solid rgb(139, 123, 211);
+  /* border: 1px solid rgb(139, 123, 211); */
   border-radius: 1rem;
   padding: 1rem;
   margin-bottom: 0rem;
@@ -52,10 +52,10 @@ body
 #bottomcolumn
 {
   background-color:#e7f5f8;
-  border: 1px solid rgb(139, 123, 211);
+  /* border: 1px solid rgb(139, 123, 211); */
   border-radius: 1rem;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   margin-top: 1rem;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
@@ -64,10 +64,10 @@ body
 #sketch
 {
   background-color:#e7f5f8;
-  border: 1px solid rgb(139, 123, 211);
+  /* border: 1px solid rgb(139, 123, 211); */
   border-radius: 1rem;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   margin-top: 1rem;
   /* margin-left: 1rem; */
 }
@@ -77,13 +77,26 @@ body
 {
   margin-left: 2px;
 }
-
-
+#colorPicker
+{
+  margin-left: 2px;
+}
+#seed_probability
+{
+  margin-bottom: 0rem;
+}
+#seed_probability.custom-range::-webkit-slider-thumb {
+  background: green;
+}
+#reset_button
+{
+  margin-top: 1;
+}
 
 #infobox
 {
   background-color:#e7f5f8;
-  border: 1px solid rgb(139, 123, 211);
+  /* border: 1px solid rgb(139, 123, 211); */
   border-radius: 1rem;
   padding: 1rem;
   margin-bottom: 0rem;

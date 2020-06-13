@@ -19,8 +19,9 @@ import {OBJExporter} from "./three/examples/js/exporters/OBJExporter.js";
 //Create a Pixi Application
 
 
-const WIDTH = window.innerWidth/2.25; // width of app in pixels
-const HEIGHT = window.innerWidth/2.25; // height of app in pixels
+
+const WIDTH = Math.min(window.innerWidth/1.25, window.innerHeight/1.25); // width of app in pixels
+const HEIGHT = Math.min(window.innerWidth/1.25, window.innerHeight/1.25); // height of app in pixels
 
 var WORLDWIDTH = 64; // number of tiles (cells) 
 var WORLDHEIGHT = 64;
@@ -137,6 +138,7 @@ export var seed_random = function()
     // clear_everything();
 
     var prob = document.getElementById("seed_probability").value
+    document.getElementById("popPct").innerHTML = "("+Math.floor(parseFloat(prob)*100)+"%"+")"
     init(prob);
     // iterate_once();
 
@@ -359,6 +361,13 @@ function clear_everything(clear_system = true, clear_cells = true)
         cells = [];
         cells_graphics = [];
     }
+}
+
+// set cell color
+export var set_color = function(requestedColor)
+{
+  alive_color_code = requestedColor
+
 }
 
 
@@ -638,9 +647,10 @@ export var generate_model = function()
 {
     var scene = new THREE.Scene();
 
-    var square = Math.min(window.innerWidth, window.innerHeight)/1.5
+    var square = Math.min(window.innerWidth, window.innerHeight)/1.25
     var three_canvas = document.getElementById("three_canvas")
-    var camera = new THREE.OrthographicCamera(  square / - 50, square / 50, square / 50, square / -50, - 500, 1000);
+    var camera = new THREE.OrthographicCamera(square  / -2, 
+      square  / 2   , square / 2, square / -2, -10000, 10000);
     var renderer = new THREE.WebGLRenderer( { canvas: three_canvas } );
     renderer.setSize(square, square);
     scene.background = new THREE.Color('black');
@@ -788,6 +798,11 @@ export var generate_model = function()
     geometry.setIndex(indices);
     geometry.computeBoundingBox();
     
+
+    // var myboundingBox = geometry.boundingBox;
+    // camera.zoom = Math.min(square / (myboundingBox.max.x - myboundingBox.min.x),
+    // square / (myboundingBox.max.y - myboundingBox.min.y));
+
     var material = new THREE.ShaderMaterial({
         uniforms: {
           color1: {
@@ -923,6 +938,8 @@ export function cellular_sketch (sketch) {
     // handle FPS
     fps_requested = parseInt(document.getElementById("fpsSlider").value)
     document.getElementById("checkFpsCap_text").innerHTML = fps_requested
+
+
 
     sketch.frameRate(fps_requested)
 
