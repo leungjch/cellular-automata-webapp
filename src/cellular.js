@@ -651,14 +651,15 @@ var iterate = function(myCells)
 export var generate_model = function()
 {
     var scene = new THREE.Scene();
-
-    var square = Math.min(window.innerWidth, window.innerHeight)/1.25
+    var myWidth = window.innerWidth*2/3
+    var myHeight = window.innerHeight*2/3
+    // var square = Math.min(window.innerWidth*2/3, window.innerHeight*2/3)
     var three_canvas = document.getElementById("three_canvas")
-    var camera = new THREE.OrthographicCamera(square  / -2, 
-      square  / 2   , square / 2, square / -2, -10000, 10000);
+    var camera = new THREE.OrthographicCamera(myWidth  / -4, 
+      myWidth  / 4   , myHeight / 4, myHeight / -4, -10000, 10000);
     var renderer = new THREE.WebGLRenderer( { canvas: three_canvas } );
-    renderer.setSize(square, square);
-    scene.background = new THREE.Color('black');
+    renderer.setSize(myWidth, myHeight);
+    scene.background = new THREE.Color('white');
 
     var faces = [
         { // left
@@ -811,10 +812,11 @@ export var generate_model = function()
     var material = new THREE.ShaderMaterial({
         uniforms: {
           color1: {
-            value: new THREE.Color(colors[Math.floor(Math.random()*colors.length)])
+            // value: new THREE.Color(colors[Math.floor(Math.random()*colors.length)])
+            value: new THREE.Color(Math.random()*255*255*255)
           },
           color2: {
-            value: new THREE.Color(colors[Math.floor(Math.random()*colors.length)])
+            value: new THREE.Color(Math.random()*255*255*255)
           },
           bboxMin: {
             value: geometry.boundingBox.min

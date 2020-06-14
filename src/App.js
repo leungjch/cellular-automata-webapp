@@ -115,10 +115,10 @@ class App extends React.Component {
 
         <div className="container-fluid m-0 p-0" id="entire_ui">
           <div className="row">
-            <div className="col">
+            <div className="col-6">
               <div id="left">
                 <div className="row">
-                    <div className="col-4" id="gridcolumn">
+                    <div className="col-6" id="gridcolumn">
 
                       <label htmlFor="gridwidth">Width</label>
                       <input type="range" className="custom-range" min="0" max="192" id="gridwidth"  onChange = {set_size} />
@@ -231,24 +231,20 @@ Generation: <output id="iterationNum"></output>
 
 
                         <div className = 'row' id='speed_bar'>
-                        <div className = 'col'>
-                        <label htmlFor="fpsSlider">Speed: <span id="checkFpsCap_text"></span> fps </label>
+                        <div className = 'col justify-content-center text-center'>
                         <input type="range" className="custom-range" min="1" max="60" defaultValue="60" id="fpsSlider" onChange={set_fps} />
+                        <span className="align-text-bottom">
+                        <label htmlFor="fpsSlider">Speed: <span id="checkFpsCap_text"></span> fps </label>
+                        </span>
+
                         </div>
-                        <div className = 'col'>
-                        <div className="d-flex justify-content-around">
-                          <div className="p-2 flex-fill">
-                            <button type="button" id = "generate_model" className="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
-                            3D Stacked System
-                            </button>
-                          </div>
-                          <div className="p-2 flex-fill">
-                            <button className="btn btn-info btn-lg btn-block" onClick={this.removeSvg}>
+                        <div className = 'col justify-content-center'>
+                        <button type="button" id = "generate_model" className="btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
+                          3D Stack
+                          </button>
+                          <button className="btn btn-lg btn-block btn-info" onClick={this.removeSvg}>
                             Toggle Graph
                             </button>
-                          </div>
-                        </div>
-
                         </div>
 
 
@@ -270,7 +266,7 @@ Generation: <output id="iterationNum"></output>
                   </div>
                 </div>
             
-            <div className="col my-auto" id="rightcol">
+            <div className="col-1 my-auto" id="rightcol">
               <div className="row">
               <div className="vertical-center" id="sketch">
                 <P5Wrapper sketch={cellular_sketch} ></P5Wrapper>
@@ -322,7 +318,7 @@ Generation: <output id="iterationNum"></output>
                   Press the <b>Populate</b> button to randomly populate the grid with a probability defined by the slider beside it (left - 0% populated, right - 100% populated). Moving the slider too far to the left or right will cause cells to die of loneliness or overpopulation.
                 </li>
                 <li>
-                  Press the <b>Generate 3D Stacked System</b> button to generate a stacked 3D model of your system, with each horizontal slice representing a single generation. You can export it as an .obj file.
+                  Press the <b>3D Stack</b> button to generate a stacked 3D model of your system, with each horizontal slice representing a single generation. You can export it as an .obj file.
                 </li>
                 <li>
                   Press the <b>Toggle Graph</b> to toggle a real-time graph of the cell population over time.
@@ -354,11 +350,13 @@ Generation: <output id="iterationNum"></output>
             </div>
           </div>
         </div>
-            <div className="modal fade bd-example-modal-lg" id="model_modal" tabIndex="-1" role="dialog" aria-labelledby="model_modal_label" aria-hidden="true">
-              <div className="modal-dialog modal-lg" role="document">
+            <div className="modal fade" id="model_modal" tabIndex="-1" role="dialog" aria-labelledby="model_modal_label" aria-hidden="true">
+              <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
-                  <div className="modal-body">
-                    <canvas id = "three_canvas" width="800" height = "800"></canvas> 
+                  <div className="modal-body" id="model_modal_body">
+                    <div class='container-fluid'>
+                    <canvas id = "three_canvas" width="1080" height = "540"></canvas> 
+                    </div>
                   </div>
                   <div className="modal-footer">
                     <span> Hold mouse click to rotate model, scroll to zoom. Made using three.js. </span>

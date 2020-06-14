@@ -71,7 +71,13 @@ body
 
 }
 
+#historySlider.custom-range::-webkit-slider-thumb {
+  width: 3rem;
+}  
 
+#fpsSlider.custom-range::-webkit-slider-thumb {
+  width: 3rem;
+} 
 #sketch
 {
   background-color:#e7f5f8;
@@ -105,7 +111,9 @@ body
 }
 #reset_button
 {
-  margin-top: 1;
+  background-color: #e75362;
+  border:transparent;
+  margin-top: 0.5rem;
 }
 
 .p3
@@ -113,6 +121,12 @@ body
   margin-left:0.5rem;
   margin-bottom:1rem;
 }
+#p5
+{
+  margin-left:0.5rem;
+  margin-top:0.5rem;
+}
+
 #infobox
 {
   background-color:#e7f5f8;
@@ -180,10 +194,19 @@ body
   display: flex;
   align-items: center;
 }
-
-
+#model_modal_body{
+  position: relative;
+  overflow-y: auto;
+  padding: 15px;
+}
+.modal-dialog {
+  text-align: center; 
+  max-width: 100%;
+  width: auto !important;
+  display: inline-block;
+}
 /* d3js */
-.axis {
+.axis { 
   font-family: sans-serif;
   fill: #d35400;
   font-size: 12px;
