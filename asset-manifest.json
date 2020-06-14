@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/cellular-automata/static/css/main.7b658fca.chunk.css",
+    "main.css": "/cellular-automata/static/css/main.4ebce078.chunk.css",
     "main.js": "/cellular-automata/static/js/main.c731ffca.chunk.js",
     "main.js.map": "/cellular-automata/static/js/main.c731ffca.chunk.js.map",
     "runtime-main.js": "/cellular-automata/static/js/runtime-main.ced264f0.js",
@@ -9,10 +9,10 @@
     "static/js/2.5ab8e73b.chunk.js": "/cellular-automata/static/js/2.5ab8e73b.chunk.js",
     "static/js/2.5ab8e73b.chunk.js.map": "/cellular-automata/static/js/2.5ab8e73b.chunk.js.map",
     "index.html": "/cellular-automata/index.html",
-    "precache-manifest.7f788210d32e05d85daaafedf2d1b7c2.js": "/cellular-automata/precache-manifest.7f788210d32e05d85daaafedf2d1b7c2.js",
+    "precache-manifest.a228da7ffb56e0a2cbe836a1922192dc.js": "/cellular-automata/precache-manifest.a228da7ffb56e0a2cbe836a1922192dc.js",
     "service-worker.js": "/cellular-automata/service-worker.js",
     "static/css/2.829c9cb5.chunk.css.map": "/cellular-automata/static/css/2.829c9cb5.chunk.css.map",
-    "static/css/main.7b658fca.chunk.css.map": "/cellular-automata/static/css/main.7b658fca.chunk.css.map",
+    "static/css/main.4ebce078.chunk.css.map": "/cellular-automata/static/css/main.4ebce078.chunk.css.map",
     "static/js/2.5ab8e73b.chunk.js.LICENSE.txt": "/cellular-automata/static/js/2.5ab8e73b.chunk.js.LICENSE.txt",
     "static/media/arrow_back-white-24dp.svg": "/cellular-automata/static/media/arrow_back-white-24dp.3c0575f0.svg",
     "static/media/arrow_forward-white-24dp.svg": "/cellular-automata/static/media/arrow_forward-white-24dp.4c96bfcd.svg",
@@ -26,7 +26,7 @@
     "static/js/runtime-main.ced264f0.js",
     "static/css/2.829c9cb5.chunk.css",
     "static/js/2.5ab8e73b.chunk.js",
-    "static/css/main.7b658fca.chunk.css",
+    "static/css/main.4ebce078.chunk.css",
     "static/js/main.c731ffca.chunk.js"
   ]
 }
