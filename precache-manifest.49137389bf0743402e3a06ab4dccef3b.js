@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a611533e1678812e9f56bc8e252dc5e7",
+    "revision": "7c41d13132003cb70b0554054c451eff",
     "url": "/cellular-react/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cellular-react/static/css/2.829c9cb5.chunk.css"
   },
   {
-    "revision": "5bedc2e11a35b196113d",
-    "url": "/cellular-react/static/css/main.1447fa35.chunk.css"
+    "revision": "3ab113093b4ef2f45edf",
+    "url": "/cellular-react/static/css/main.b4879a9a.chunk.css"
   },
   {
     "revision": "9dff92965010211bfabb",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cellular-react/static/js/2.5ab8e73b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5bedc2e11a35b196113d",
-    "url": "/cellular-react/static/js/main.17fe6726.chunk.js"
+    "revision": "3ab113093b4ef2f45edf",
+    "url": "/cellular-react/static/js/main.c4cd304d.chunk.js"
   },
   {
     "revision": "c3bdd4709f38f9b23888",
