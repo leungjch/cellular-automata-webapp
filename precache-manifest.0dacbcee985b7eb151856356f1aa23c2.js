@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3121a77973ac69c9b69364380a8be0d6",
+    "revision": "3f31890a6f9c5d05c4b4eaf1e6114be6",
     "url": "/cellular-automata/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cellular-automata/static/css/2.829c9cb5.chunk.css"
   },
   {
-    "revision": "26bdc7f820a26529d411",
+    "revision": "4e9df304744d8ff5c10c",
     "url": "/cellular-automata/static/css/main.4ebce078.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cellular-automata/static/js/2.5ab8e73b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "26bdc7f820a26529d411",
-    "url": "/cellular-automata/static/js/main.c731ffca.chunk.js"
+    "revision": "4e9df304744d8ff5c10c",
+    "url": "/cellular-automata/static/js/main.38c4d882.chunk.js"
   },
   {
     "revision": "d177090b4071a72912fa",

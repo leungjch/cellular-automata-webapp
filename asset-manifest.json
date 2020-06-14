@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/cellular-automata/static/css/main.4ebce078.chunk.css",
-    "main.js": "/cellular-automata/static/js/main.c731ffca.chunk.js",
-    "main.js.map": "/cellular-automata/static/js/main.c731ffca.chunk.js.map",
+    "main.js": "/cellular-automata/static/js/main.38c4d882.chunk.js",
+    "main.js.map": "/cellular-automata/static/js/main.38c4d882.chunk.js.map",
     "runtime-main.js": "/cellular-automata/static/js/runtime-main.ced264f0.js",
     "runtime-main.js.map": "/cellular-automata/static/js/runtime-main.ced264f0.js.map",
     "static/css/2.829c9cb5.chunk.css": "/cellular-automata/static/css/2.829c9cb5.chunk.css",
     "static/js/2.5ab8e73b.chunk.js": "/cellular-automata/static/js/2.5ab8e73b.chunk.js",
     "static/js/2.5ab8e73b.chunk.js.map": "/cellular-automata/static/js/2.5ab8e73b.chunk.js.map",
     "index.html": "/cellular-automata/index.html",
-    "precache-manifest.a228da7ffb56e0a2cbe836a1922192dc.js": "/cellular-automata/precache-manifest.a228da7ffb56e0a2cbe836a1922192dc.js",
+    "precache-manifest.0dacbcee985b7eb151856356f1aa23c2.js": "/cellular-automata/precache-manifest.0dacbcee985b7eb151856356f1aa23c2.js",
     "service-worker.js": "/cellular-automata/service-worker.js",
     "static/css/2.829c9cb5.chunk.css.map": "/cellular-automata/static/css/2.829c9cb5.chunk.css.map",
     "static/css/main.4ebce078.chunk.css.map": "/cellular-automata/static/css/main.4ebce078.chunk.css.map",
@@ -27,6 +27,6 @@
     "static/css/2.829c9cb5.chunk.css",
     "static/js/2.5ab8e73b.chunk.js",
     "static/css/main.4ebce078.chunk.css",
-    "static/js/main.c731ffca.chunk.js"
+    "static/js/main.38c4d882.chunk.js"
   ]
 }
