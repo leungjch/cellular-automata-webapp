@@ -249,7 +249,6 @@ export var set_rules = function()
 //   chunks = [];
 // }
 
-// from pixi.js tutorial
 function keyboard(value) {
     let key = {};
     key.value = value;
@@ -458,6 +457,26 @@ qKey.press = () => {
     init()
     // iterate_once();
 };
+
+let leftKey = keyboard("ArrowLeft");
+leftKey.press = () => {
+  set_history_back_one();
+};
+
+let rightKey = keyboard("ArrowRight");
+rightKey.press = () => {
+  iterate_once();
+};
+let upKey = keyboard("ArrowUp");
+upKey.press = () => {
+  set_history(0,false,false);
+};
+let rKey = keyboard("r");
+rKey.press = () => {
+  var prob = document.getElementById("seed_probability").value
+  init(prob)
+};
+
 
 // initialize grid
 // Populate the world with cells (assume all are dead, aka state=0)

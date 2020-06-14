@@ -21,7 +21,7 @@ import './App.css';
 
 import 'bootstrap-select'
 require('bootstrap-select');
-let configs = require("./configs_test.json")
+let configs = require("./configs.json")
 
 
 const Option = props => {
@@ -315,7 +315,7 @@ Generation: <output id="iterationNum"></output>
                   Press the <b>Clear</b> button or <b>Q</b> to clear everything.
                 </li>
                 <li>
-                  Press the <b>Populate</b> button to randomly populate the grid with a probability defined by the slider beside it (left - 0% populated, right - 100% populated). Moving the slider too far to the left or right will cause cells to die of loneliness or overpopulation.
+                  Press the <b>Populate</b> button or <b>R</b> to randomly populate the grid with a probability defined by the slider beside it (left - 0% populated, right - 100% populated). Moving the slider too far to the left or right will cause cells to die of loneliness or overpopulation.
                 </li>
                 <li>
                   Press the <b>3D Stack</b> button to generate a stacked 3D model of your system, with each horizontal slice representing a single generation. You can export it as an .obj file.
@@ -327,10 +327,13 @@ Generation: <output id="iterationNum"></output>
                   Press <b>SPACE</b> to pause or play.
                 </li>
                 <li>
-                  Press <b>Forward Arrow</b> to advance the system by one generation.
+                  Press <b>Right Arrow</b> to advance the system by one generation.
                 </li>
                 <li>
-                  Press <b>Back Arrow</b> to reverse the system by one generation.
+                  Press <b>Left Arrow</b> to reverse the system by one generation.
+                </li>
+                <li>
+                  Press <b>Up Arrow</b> to go back to the initial state.
                 </li>
                 <li>
                   Control the <b> grid size </b> using the width and height sliders. Supports a maximum 150x150 cell grid.

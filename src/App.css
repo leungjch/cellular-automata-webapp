@@ -19,6 +19,11 @@ body
   }
 }
 
+@viewport{
+  orientation:landscape;
+}
+
+
 /* #left
 {
   background-color:rgb(245, 255, 236);
