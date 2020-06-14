@@ -1,7 +1,7 @@
 import React from 'react';
 import P5Wrapper from 'react-p5-wrapper';
-
-import {cellular_sketch, reset_button, seed_random, set_size, set_history, set_history_end, set_history_back_one, iterate_once, toggle_play, set_fps, set_rules, set_rule_preset, set_color, generate_model} from './cellular.js'
+import * as d3 from "d3";
+import {cellular_sketch, reset_button, seed_random, set_size, set_history, set_history_end, set_history_back_one, iterate_once, toggle_play, set_fps, set_rules, set_rule_preset, set_color, generate_model, create_viz} from './cellular.js'
 // import './cellular.js'
 import $ from 'jquery';
 
@@ -48,6 +48,7 @@ class App extends React.Component {
     selectedOption: null,
     isChecked: true,
     isPaused: false,
+    isToggleViz: true,
     cellColor: "#2E8B9F",
   };
   handleChange = selectedOption => {
@@ -88,6 +89,20 @@ class App extends React.Component {
     this.setState({ cellColor: color.rgb });
     set_color(color.hex);
   }
+  removeSvg = () =>
+  {
+    this.setState({
+      isToggleViz: !this.state.isToggleViz,
+    });
+    console.log(this.state.isToggleViz)
+
+
+    $('#collapse_viz').collapse('toggle');
+
+  }
+
+
+
 
 
   
@@ -111,9 +126,10 @@ class App extends React.Component {
                       <label htmlFor="gridheight">Height</label>
                       <input type="range" className="custom-range" min="0" max="192" id="gridheight" onChange = {set_size} />
                       
-                      <div className="d-flex flex-row justify-content-around">
-                        <div className="p-2">
-                          <label htmlFor="wrap_around"> Wrap Edges </label>
+                      <div>
+                      <div className="d-flex flex justify-content-between">
+                        <div className="p-2" id="wraptext">
+                          <label htmlFor="wrap_around">Wrap Edge</label>
                         </div>
                         <div className="p-2">
                           <input type="checkbox" id="wrap_around" onChange = {this.toggleWrap} checked = {this.state.isChecked} />
@@ -121,7 +137,7 @@ class App extends React.Component {
                       </div>
 
                       <div>
-                        <div className="d-flex flex-row justify-content-around">
+                        <div className="d-flex flex justify-content-between">
                           <div className="p2">
                             <label htmlFor="bgPicker">Cell Color</label>
                           </div>
@@ -133,10 +149,13 @@ class App extends React.Component {
                           </div>
                         </div>
 
+                      </div>
+
                       <input type="range" className="custom-range" max="1.00" min="0.00" defaultValue="0.2" step="0.01" onChange={seed_random} id="seed_probability"  />
 
                       <button type="button" id = "random_button" className="btn btn-success btn-lg btn-block" onClick={seed_random}>Populate <span id="popPct">(20%)</span></button>
 
+                      <button type="button" id="reset_button" className="btn btn-primary btn-lg btn-block" onClick={reset_button}>Clear</button>
 
                       {/* <div className="d-flex flex-row justify-content-center">
                         <div className="p-2">
@@ -148,7 +167,6 @@ class App extends React.Component {
 
                       </div>
 
-                      <button type="button" id="reset_button" className="btn btn-primary btn-lg btn-block" onClick={reset_button}>Clear</button>
                     
                     </div>
                   <div className="col" id="rulecolumn">
@@ -177,9 +195,6 @@ class App extends React.Component {
                     <div className='row' id="bottom">
                       <div className='col' id="bottomcolumn">
 
-                      <p>Generation: <output id="iterationNum"></output></p>
-
-
                         <input type="range" className="custom-range" min="0" max="0" id="historySlider" onChange = {this.handleChangeTime} onMouseUp = {this.handleChangeTime_end} />
 
                         <div className="d-flex flex-row justify-content-center">
@@ -206,15 +221,27 @@ class App extends React.Component {
                           </div>
 
 
+
                         </div> 
-                        <label htmlFor="fpsSlider">Speed (<span id="checkFpsCap_text"></span> fps) </label>
+                        <p>Generation: <output id="iterationNum"></output></p>
+                        <label htmlFor="fpsSlider">Speed: <span id="checkFpsCap_text"></span> fps </label>
                         <input type="range" className="custom-range" min="1" max="60" defaultValue="60" id="fpsSlider" onChange={set_fps} />
 
-                     
+                        <div className="d-flex justify-content-around">
+                          <div className="p-2 flex-fill">
+                            <button type="button" id = "generate_model" className="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
+                            Generate 3D Stacked System
+                            </button>
+                          </div>
+                          <div className="p-2 flex-fill">
+                            <button className="btn btn-success btn-lg btn-block" onClick={this.removeSvg}>
+                            Toggle Cell Population Graph
+                            </button>
+                          </div>
+                        </div>
+
                         {/* <label htmlFor="generate_model">  </label> */}
-                        <button type="button" id = "generate_model" className="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
-                        Generate 3D Stacked System
-                        </button>
+
 
 
 
@@ -242,6 +269,9 @@ class App extends React.Component {
               {/* <nav className="navbar sticky-bottom navbar-light bg-light">
                 <a className="navbar-brand" href="#">Sticky Footer</a>
               </nav> */}
+          <div id="collapse_viz" className ="row justify-content-center collapse">
+          </div>
+
           <div className="row">
             <div className="col" id="infobox">
             <h1> What is Cellular Automata? </h1>
@@ -277,6 +307,9 @@ class App extends React.Component {
                 </li>
                 <li>
                   Press the <b>Generate 3D Stacked System</b> button to generate a stacked 3D model of your system, with each horizontal slice representing a single generation. You can export it as an .obj file.
+                </li>
+                <li>
+                  Press the <b>Toggle Cell Population Graph</b> to toggle a real-time graph of the cell population over time.
                 </li>
                 <li>
                   Press <b>SPACE</b> to pause or play.

@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
     "bootstrap-select": "^1.13.17",
+    "d3": "^5.16.0",
     "html2react": "^1.2.1",
     "jquery": "^3.5.1",
     "p5": "^1.0.0",

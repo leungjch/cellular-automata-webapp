@@ -1,6 +1,7 @@
 
 /* eslint-disable import/first */
 
+import * as d3 from "d3";
 
 // import * as THREE from 'three';
 var THREE = require('three');
@@ -52,6 +53,9 @@ var cells = []
 var cells_graphics = []
 var system = []; // records cells over time: dimension. i-th element contains the i-th frame of cells
 var system_graphics = [];
+
+var cell_alive_count = [] // number of alive cells per iteration 
+
 // setup interactive page elements
 var fpsSlider = document.getElementById("fpsSlider");
 var fpsValueDisplay = document.getElementById("fpsValue");
@@ -159,7 +163,6 @@ export var set_size = function()
     
     change_canvas_size = true;
     wrap_edges = document.getElementById("wrap_around").checked
-    console.log(wrap_edges)
     init(prob);
     // iterate_once();
 }
@@ -493,6 +496,7 @@ var init = function (use_random_probability = null)
 
     system.push(JSON.parse(JSON.stringify(cells)));
     system_graphics.push(JSON.parse(JSON.stringify(cells_graphics)));
+    cell_alive_count.push(0)
 
 }
 // draw rectangle
@@ -963,6 +967,8 @@ export function cellular_sketch (sketch) {
 
         system.push(JSON.parse(JSON.stringify(cells)));
         system_graphics.push(JSON.parse(JSON.stringify(cells_graphics)));
+        cell_alive_count.push(system_graphics.length)
+
         if (system.length > MAX_SYSTEM_LENGTH)
         {
           system.shift();
@@ -1049,3 +1055,123 @@ export function cellular_sketch (sketch) {
 
 // let myp5 = new p5(cellular_sketch, document.getElementById('p5sketch'));
  
+
+export var create_viz = function(){
+  var data = [
+  ];
+  var width = window.innerWidth-100;
+  var height = 100;
+  var globalX = 0;
+  var duration = 500;
+  var max = 1000;
+  var step = 4;
+  var chart = d3.select('#collapse_viz').append('svg')
+  .attr('width', width)
+  .attr('height', height);
+  var x = d3.scaleLinear().domain([0, 5000]).range([0, window.innerWidth-100]);
+  var y = d3.scaleLinear().domain([0, WORLDWIDTH*WORLDHEIGHT]).range([100, 0]);
+  // -----------------------------------
+  var line = d3.line()
+            .x(function(d){ return x(d.x); })
+            .y(function(d){ return y(d.y); });
+  var smoothLine = d3.line().curve(d3.curveCardinal)
+            .x(function(d){ return x(d.x); })
+            .y(function(d){ return y(d.y); });
+  var lineArea = d3.area()
+            .x(function(d){ return x(d.x); })
+            .y0(y(0))
+            .y1(function(d){ return y(d.y); })
+            .curve(d3.curveCardinal);
+  // -----------------------------------
+  // Draw the axis
+  var xAxis = d3.axisBottom().scale(x);
+  // var axisX = chart.append('g').attr('class', 'x axis')
+  //        .attr('transform', 'translate(0, 500)')
+  //        .call(xAxis);
+  // Draw the grid
+  // chart.append('path').datum([{x: 0, y: 150}, {x: 500, y: 150}])
+  //           .attr('class', 'grid')
+  //           .attr('d', line);
+  // chart.append('path').datum([{x: 0, y: 300}, {x: 500, y: 300}])
+  //           .attr('class', 'grid')
+  //           .attr('d', line);
+  // chart.append('path').datum([{x: 0, y: 450}, {x: 500, y: 450}])
+  //           .attr('class', 'grid')
+  //           .attr('d', line);
+  // chart.append('path').datum([{x: 50, y: 0}, {x: 50, y: 500}])
+  //           .attr('class', 'grid')
+  //           .attr('d', line);
+  // chart.append('path').datum([{x: 250, y: 0}, {x: 250, y: 500}])
+  //           .attr('class', 'grid')
+  //           .attr('d', line);
+  // chart.append('path').datum([{x: 450, y: 0}, {x: 450, y: 500}])
+  //           .attr('class', 'grid')
+  //           .attr('d', line);
+  // Append the holder for line chart and fill area
+  var path = chart.append('path');
+  var areaPath = chart.append('path');
+  // Main loop
+  function tick() {
+    if (y !== d3.scaleLinear().domain([0, WORLDWIDTH*WORLDHEIGHT]).range([100, 0]))
+    {
+      y = d3.scaleLinear().domain([0, WORLDWIDTH*WORLDHEIGHT]).range([100, 0])
+    }
+    if (!stopped)
+    {
+    // Generate new data
+    var point = {
+      x: globalX,
+      y: cells_graphics.length
+    };
+    data.push(point);
+    globalX += step;
+    // Draw new line
+    path.datum(data)
+      .attr('class', 'smoothline')
+      .attr('d', smoothLine);
+    // Draw new fill area
+    areaPath.datum(data)
+      .attr('class', 'area')
+      .attr('d', lineArea);
+    // Shift the chart left
+    x.domain([globalX - (max - step), globalX]);
+    // axisX.transition()
+    //    .duration(duration)
+    //    .ease(d3.easeLinear,2)
+    //    .call(xAxis);
+    path.attr('transform', null)
+      .transition()
+      .duration(1000/fps_requested)
+      .ease(d3.easeLinear,2)
+      .attr('transform', 'translate(' + x(globalX - max) + ')')
+    areaPath.attr('transform', null)
+      .transition()
+      .duration(1000/fps_requested)
+      .ease(d3.easeLinear,2)
+      .attr('transform', 'translate(' + x(globalX - max) + ')')
+      .on('end', tick)
+    // Remote old data (max 50 points)
+    if (data.length > 5000) data.shift();
+  }
+  else
+  {
+    path.attr('transform', null)
+      .transition()
+      .duration(1000/fps_requested)
+      .ease(d3.easeLinear,2)
+      // .attr('transform', 'translate(' + x(globalX - max) + ')')
+    areaPath.attr('transform', null)
+      .transition()
+      .duration(1000/fps_requested)
+      .ease(d3.easeLinear,2)
+      // .attr('transform', 'translate(' + x(globalX - max) + ')')
+      .on('end', tick)
+  }
+  }
+  tick();
+}
+
+
+// d3js data visualization
+$(document).ready(create_viz);
+

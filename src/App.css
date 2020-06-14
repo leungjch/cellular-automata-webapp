@@ -55,7 +55,7 @@ body
   /* border: 1px solid rgb(139, 123, 211); */
   border-radius: 1rem;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   margin-top: 1rem;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
@@ -67,7 +67,7 @@ body
   /* border: 1px solid rgb(139, 123, 211); */
   border-radius: 1rem;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   margin-top: 1rem;
   /* margin-left: 1rem; */
 }
@@ -75,15 +75,20 @@ body
 
 #wrap_around
 {
-  margin-left: 2px;
+  margin-right: 0;
 }
 #colorPicker
 {
-  margin-left: 2px;
+  margin-left: 0;
 }
 #seed_probability
 {
   margin-bottom: 0rem;
+}
+#wraptext
+{
+ padding:0px;
+  margin-left:-0.5rem;
 }
 #seed_probability.custom-range::-webkit-slider-thumb {
   background: green;
@@ -152,4 +157,53 @@ body
 
   display: flex;
   align-items: center;
+}
+
+
+/* d3js */
+.axis {
+  font-family: sans-serif;
+  fill: #d35400;
+  font-size: 12px;
+}
+.line {
+  fill: none;
+  stroke: #f1c40f;
+  stroke-width: 3px;
+}
+.smoothline {
+  fill: none;
+  stroke: #2E8B9F;
+  stroke-width: 3px;
+}
+.area {
+  fill: #2E8B9F;
+  opacity: 0.5;
+}
+.circle {
+  stroke: #e7f5f8;
+  stroke-width: 3px;
+  fill: #FFF;
+}
+.grid {
+  stroke: #DDD;
+  stroke-width: 1px;
+  fill: none;
+}
+#collapse_viz
+{
+  background-color:#e7f5f8;
+  /* border: 1px solid rgb(139, 123, 211); */
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 0rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  text-align: left;
+}
+#svg{
+  margin-top:0px;
+  margin-bottom:0;
+
 }
