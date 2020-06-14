@@ -155,7 +155,7 @@ class App extends React.Component {
 
                       <button type="button" id = "random_button" className="btn btn-success btn-lg btn-block" onClick={seed_random}>Populate <span id="popPct">(20%)</span></button>
 
-                      <button type="button" id="reset_button" className="btn btn-primary btn-lg btn-block" onClick={reset_button}>Clear</button>
+                      <button type="button" id="reset_button" className="btn btn-danger btn-lg btn-block" onClick={reset_button}>Clear</button>
 
                       {/* <div className="d-flex flex-row justify-content-center">
                         <div className="p-2">
@@ -193,52 +193,68 @@ class App extends React.Component {
                   </div>
                 </div>
                     <div className='row' id="bottom">
-                      <div className='col' id="bottomcolumn">
+                      <div className='col'>
+                        <div className = 'row' id='playback_bar'>
+                          <div className = 'col'>
+                          <input type="range" className="custom-range" min="0" max="0" id="historySlider" onChange = {this.handleChangeTime} onMouseUp = {this.handleChangeTime_end} />
 
-                        <input type="range" className="custom-range" min="0" max="0" id="historySlider" onChange = {this.handleChangeTime} onMouseUp = {this.handleChangeTime_end} />
+<div className="d-flex flex-row justify-content-center" id="playback">
+  <div className = "p3">
+  <button type="button" id="beginning" className="btn btn-primary" onClick = {this.handleBeginningTime}>
+    <img src={icons("./beginning-white-24dp.svg")} alt="description of image"></img>
+  </button>
+  
+  </div>
+  <div className = "p3">
+  <button type="button" id="back_one" className="btn btn-primary" onClick = {set_history_back_one}>
+  <img src={icons("./arrow_back-white-24dp.svg")} alt="description of image"></img>
+  </button>
+  </div>
+  <div className = "p3">
+  <button type="button" id="play_pause" className="btn btn-primary" onClick={this.handle_play}>
+    <img src={icons(`./${pause_or_play}`)} alt="x"></img>
+  </button>
+  </div>
+  <div className = "p3">
+  <button type="button" id="forward_one" className="btn btn-primary" onClick = {iterate_once}>
+  <img src={icons("./arrow_forward-white-24dp.svg")} alt="description of image"></img>
+  </button>
+  </div>
 
-                        <div className="d-flex flex-row justify-content-center">
-                          <div className = "p2">
-                          <button type="button" id="beginning" className="btn btn-primary" onClick = {this.handleBeginningTime}>
-                            <img src={icons("./beginning-white-24dp.svg")} alt="description of image"></img>
-                          </button>
-                          
+</div> 
+
+Generation: <output id="iterationNum"></output>
+
+</div>
+
                           </div>
-                          <div className = "p2">
-                          <button type="button" id="back_one" className="btn btn-primary" onClick = {set_history_back_one}>
-                          <img src={icons("./arrow_back-white-24dp.svg")} alt="description of image"></img>
-                          </button>
-                          </div>
-                          <div className = "p2">
-                          <button type="button" id="play_pause" className="btn btn-primary" onClick={this.handle_play}>
-                            <img src={icons(`./${pause_or_play}`)} alt="x"></img>
-                          </button>
-                          </div>
-                          <div className = "p2">
-                          <button type="button" id="forward_one" className="btn btn-primary" onClick = {iterate_once}>
-                          <img src={icons("./arrow_forward-white-24dp.svg")} alt="description of image"></img>
-                          </button>
-                          </div>
 
 
-
-                        </div> 
-                        <p>Generation: <output id="iterationNum"></output></p>
+                        <div className = 'row' id='speed_bar'>
+                        <div className = 'col'>
                         <label htmlFor="fpsSlider">Speed: <span id="checkFpsCap_text"></span> fps </label>
                         <input type="range" className="custom-range" min="1" max="60" defaultValue="60" id="fpsSlider" onChange={set_fps} />
-
+                        </div>
+                        <div className = 'col'>
                         <div className="d-flex justify-content-around">
                           <div className="p-2 flex-fill">
-                            <button type="button" id = "generate_model" className="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
-                            Generate 3D Stacked System
+                            <button type="button" id = "generate_model" className="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#model_modal" onClick={generate_model}>
+                            3D Stacked System
                             </button>
                           </div>
                           <div className="p-2 flex-fill">
-                            <button className="btn btn-success btn-lg btn-block" onClick={this.removeSvg}>
-                            Toggle Cell Population Graph
+                            <button className="btn btn-info btn-lg btn-block" onClick={this.removeSvg}>
+                            Toggle Graph
                             </button>
                           </div>
                         </div>
+
+                        </div>
+
+
+                        </div>
+
+
 
                         {/* <label htmlFor="generate_model">  </label> */}
 
@@ -309,7 +325,7 @@ class App extends React.Component {
                   Press the <b>Generate 3D Stacked System</b> button to generate a stacked 3D model of your system, with each horizontal slice representing a single generation. You can export it as an .obj file.
                 </li>
                 <li>
-                  Press the <b>Toggle Cell Population Graph</b> to toggle a real-time graph of the cell population over time.
+                  Press the <b>Toggle Graph</b> to toggle a real-time graph of the cell population over time.
                 </li>
                 <li>
                   Press <b>SPACE</b> to pause or play.
@@ -332,7 +348,7 @@ class App extends React.Component {
                 
               </ul>
             <h1> Info </h1>
-            <p> Responsive UI created through React, website styling with Bootstrap. Fast grid rendering using p5.js. 3D stacked visualisation created using three.js. Created by Justin Leung (June 2020). </p>
+            <p> Responsive UI created through React, website styling with Bootstrap. Fast grid rendering using p5.js. 3D stacked visualisation created using three.js. Real-time cell population data visualization created using d3.js. Created by Justin Leung (June 2020). </p>
             <p> Credits to <a href="http://www.mirekw.com/ca/ca_rules.html">Mirek Wójtowicz</a> for his compilation and descriptions of interesting CA rules. </p>
 
             </div>
