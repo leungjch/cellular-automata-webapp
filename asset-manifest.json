@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/cellular-react/static/css/main.a9a9a6c4.chunk.css",
-    "main.js": "/cellular-react/static/js/main.e107b7bd.chunk.js",
-    "main.js.map": "/cellular-react/static/js/main.e107b7bd.chunk.js.map",
+    "main.js": "/cellular-react/static/js/main.cf36e2ae.chunk.js",
+    "main.js.map": "/cellular-react/static/js/main.cf36e2ae.chunk.js.map",
     "runtime-main.js": "/cellular-react/static/js/runtime-main.c5d9d9e9.js",
     "runtime-main.js.map": "/cellular-react/static/js/runtime-main.c5d9d9e9.js.map",
     "static/css/2.829c9cb5.chunk.css": "/cellular-react/static/css/2.829c9cb5.chunk.css",
     "static/js/2.5ab8e73b.chunk.js": "/cellular-react/static/js/2.5ab8e73b.chunk.js",
     "static/js/2.5ab8e73b.chunk.js.map": "/cellular-react/static/js/2.5ab8e73b.chunk.js.map",
     "index.html": "/cellular-react/index.html",
-    "precache-manifest.9b6946ca1d42fc545079370b56f78390.js": "/cellular-react/precache-manifest.9b6946ca1d42fc545079370b56f78390.js",
+    "precache-manifest.8f2f62cabcf811e93461ecf2c166d08f.js": "/cellular-react/precache-manifest.8f2f62cabcf811e93461ecf2c166d08f.js",
     "service-worker.js": "/cellular-react/service-worker.js",
     "static/css/2.829c9cb5.chunk.css.map": "/cellular-react/static/css/2.829c9cb5.chunk.css.map",
     "static/css/main.a9a9a6c4.chunk.css.map": "/cellular-react/static/css/main.a9a9a6c4.chunk.css.map",
@@ -27,6 +27,6 @@
     "static/css/2.829c9cb5.chunk.css",
     "static/js/2.5ab8e73b.chunk.js",
     "static/css/main.a9a9a6c4.chunk.css",
-    "static/js/main.e107b7bd.chunk.js"
+    "static/js/main.cf36e2ae.chunk.js"
   ]
 }
