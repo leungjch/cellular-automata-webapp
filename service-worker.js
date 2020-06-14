@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cellular-react/precache-manifest.8f2f62cabcf811e93461ecf2c166d08f.js"
+  "/cellular-react/precache-manifest.0fb2a14ff2021f5f30d70e4b57d5fdbc.js"
 );
 
 self.addEventListener('message', (event) => {
